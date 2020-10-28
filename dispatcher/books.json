@@ -249,7 +249,7 @@
         "kategori":"it",
         "writers" : "David M. Kroenke",
         "sinopsis":"Materi perkuliahan yang diberikan adalah Data Modelling, Perancangan Database Relasional, Pengetahuan SQL, Dasar-dasar Perancangan Aplikasi, Latihan dengan berbagai contohnya, dan Multi User Processing. Topik-topik terbaru yang dibahas dalam edisi ini meliputi ODBC, Data Warehousing, Database intranet dan internet, Database Multimedia, Database Objek, dan SQL3 & ODMB.",
-        "available":"20",
+        "available":"0",
         "kode":""
     },
     {
@@ -304,7 +304,7 @@
         "kategori":"ekonomi",
         "writers" : "Agung Abdul Rasul",
         "sinopsis":"Buku ini mencoba mengambil perspektif ekonometrika dalam aplikasinya pada lingkungan perusahaan, mulai dari lingkungan ekonomi makro, industri dan ekonomi mikro, serta departemen dalam perusahaan terutama departemen sumber daya manusia, departemen marketing dan departemen keuangan dan akuntansi. Sementara tradisi ekonoletrika yang mengusung paket analisa regresi, korelasi dan determinasi baik yang linier maupun non linier, sederhana maupun multiple, mulai dari estimasi parameter, varian dan standar deviasi parameter, interval keyakinan parameter, dan uji signifikasi parameter tidak ada yang terlupakan.",
-        "available":"65",
+        "available":"0",
         "kode":""
     },
     {
