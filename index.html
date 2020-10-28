@@ -135,11 +135,14 @@
 					sinop.setAttribute("anchor", "center");
 					sinop.setAttribute("align", "left");
 					let sedia = document.createElement("a-text");
+					let warni = "";if(buku[i].available=="0"){ 
+						console.log(warni = "red");
+					} else {console.log(warni = "green");}
 					let sediaan = "";
 					sediaan += "Available : " + buku[i].available + " copies"
 					sedia.setAttribute("value", sediaan);
 					sedia.setAttribute("scale", "0.19 0.19 0.19");
-					sedia.setAttribute("position", "0 -0.35 0.05");
+					sedia.setAttribute("position", "0 -0.4 0.05");
 					sedia.setAttribute("color", "black");
 					sedia.setAttribute("baseline", "top");
 					sedia.setAttribute("anchor", "center");
@@ -149,7 +152,7 @@
 					koderak += "Kode Buku : " + buku[i].kode;
 					kode.setAttribute("value", koderak);
 					kode.setAttribute("scale", "0.19 0.19 0.19");
-					kode.setAttribute("position", "0 -0.4 0.05");
+					kode.setAttribute("position", "0 -0.35 0.05");
 					kode.setAttribute("color", "black");
 					kode.setAttribute("baseline", "top");
 					kode.setAttribute("anchor", "center");
