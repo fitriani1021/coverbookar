@@ -5,7 +5,7 @@ Cover book detection
 features:
 - custom marker detection
 - book informations (title, year, summary, available, etc)
-- change background color according to the categories of the books:
+- change background colour according to the categories of the books:
     - tomato for philosophy
     - goldenrod for politic
     - skyblue for statistic
