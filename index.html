@@ -14,7 +14,7 @@
 	<a-scene vr-mode-ui="enabled: false" color-space="sRGB" renderer="gammaOutput: true" embedded
 		arjs='debugUIEnabled: false; sourceType: webcam; patternRatio: 0.85; trackingMethod: best;'>
 		<a-entity id='userCamera' camera>
-			<a-cursor> </a-cursor>
+			<!-- <a-cursor> </a-cursor> -->
 		</a-entity>
 	</a-scene>
 	<script>
@@ -106,7 +106,7 @@
 					judul.setAttribute("align", "center");
 					let writer = document.createElement("a-text");
 					let penulis = "";
-					penulis += "Penulis : " + buku[i].writers;
+					penulis += "Penulis 	: " + buku[i].writers;
 					writer.setAttribute("value", penulis);
 					writer.setAttribute("scale", "0.19 0.19 0.19");
 					writer.setAttribute("position", "0 0.19 0.05");
@@ -116,7 +116,7 @@
 					writer.setAttribute("align", "left");
 					let tebal = document.createElement("a-text");
 					let hal = "";
-					hal += "Tebal : " + buku[i].tebal + " halaman";
+					hal += "Tebal		: " + buku[i].tebal + " halaman";
 					tebal.setAttribute("value", hal);
 					tebal.setAttribute("scale", "0.19 0.19 0.19");
 					tebal.setAttribute("position", "0 0.14 0.05");
@@ -124,22 +124,32 @@
 					tebal.setAttribute("baseline", "top");
 					tebal.setAttribute("anchor", "center");
 					tebal.setAttribute("align", "left");
+					let sin = document.createElement("a-text");
+					sin.setAttribute("value", "Summary :");
+					sin.setAttribute("scale", "0.19 0.19");
+					sin.setAttribute("position", "0 0.085 0.05");
+					sin.setAttribute("color", "black");
+					sin.setAttribute("baseline", "top");
+					sin.setAttribute("anchor", "center");
+					sin.setAttribute("align", "justify");
 					let sinop = document.createElement("a-text");
 					let sinopsis = "";
-					sinopsis += "Summary : " + buku[i].sinopsis;
+					sinopsis +=  buku[i].sinopsis;
 					sinop.setAttribute("value", sinopsis);
-					sinop.setAttribute("scale", "0.19 0.12");
-					sinop.setAttribute("position", "0 0.09 0.05");
+					sinop.setAttribute("scale", "0.19 0.19");
+					sinop.setAttribute("width", "4");
+					sinop.setAttribute("position", "0.115 0.083 0.05");
+					sinop.setAttribute("wrap-count", "45");
 					sinop.setAttribute("color", "black");
 					sinop.setAttribute("baseline", "top");
 					sinop.setAttribute("anchor", "center");
-					sinop.setAttribute("align", "left");
+					sinop.setAttribute("align", "justify");
 					let sedia = document.createElement("a-text");
 					let warni = "";if(buku[i].available=="0"){ 
 						console.log(warni = "red");
 					} else {console.log(warni = "blue");}
 					let sediaan = "";
-					sediaan += "Available : " + buku[i].available + " copies"
+					sediaan += "Available	: " + buku[i].available + " copies"
 					sedia.setAttribute("value", sediaan);
 					sedia.setAttribute("scale", "0.19 0.19 0.19");
 					sedia.setAttribute("position", "0 -0.4 0.05");
@@ -160,6 +170,7 @@
 					marker.appendChild(kertas);
 					kertas.appendChild(judul);
 					kertas.appendChild(writer);
+					kertas.appendChild(sin);
 					kertas.appendChild(sinop);
 					kertas.appendChild(sedia);
 					kertas.appendChild(cover);
