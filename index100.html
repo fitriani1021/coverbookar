@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title> Cover Book AR </title>
+	<meta name="description" content="Cover Book AR">
+	<script src="./aframe/aframe.min.js"></script>
+	<script src="./build/aframe-ar.js"></script>
+	<!-- 
+	<script src="js/multiMarkers.js"></script> -->
+</head>
+
+<body>
+	<a-scene vr-mode-ui="enabled: false" color-space="sRGB" renderer="gammaOutput: true" embedded
+		arjs='debugUIEnabled: false; sourceType: webcam; patternRatio: 0.85; trackingMethod: best;'>
+		<a-entity id='userCamera' camera>
+			<!-- <a-cursor> </a-cursor> -->
+		</a-entity>
+	</a-scene>
+	<script>
+		scene = document.querySelector("a-scene");
+
+		let url = './dispatcher/book100.json';
+		fetch(url)
+			.then((resp) => resp.json())
+			.then(function (data) {
+				listbuku(data, scene);
+			})
+			.catch(function (error) {
+				console.log(JSON.stringify(error));
+			});
+
+		var markers = ["adigang", "agamapelacur", "algoritma", "americanpolitic", "amgov", "analisissurvival", "ananda",
+			"antropologi", "antropologibudaya", "bali", "barcode", "bercerita", "berjalan", "bisnisquran", "c2013",
+			"casespolitic", "cisco", "citradigital", "cloning", "commonlink", "cooplearning", "dasarpolitik",
+			"databaseprocessing", "databasepros", "dinamikafiskal", "ekonometri", "ekonometrika", "ekonometrikamanajemen",
+			"ekonomibisnis", "essenspolitic", "filosofi", "firewall", "fuzzy", "gamemaker", "gospelwater", "harddisk",
+			"hardwarepc", "humandevelop", "ilmupolitik", "ilmusosial", "ITdirs", "jalanparadoks", "jepangmatamata",
+			"kendalikualitas", "konfliketnis", "kongresbudaya", "landscapebank", "leadership", "librarycatalog",
+			"logiccontroller", "logikastatistik", "manajemenperpus", "metopensmart", "metopensos", "minecraftdummy",
+			"muliasadra", "ofdm", "officedummy", "opencv", "oposisiislam", "pancasila", "perbankan", "phpmysql",
+			"politikhukum", "politikpemerintahan", "prinsiplcd", "project2", "project2010", "psikologikepribadian",
+			"psikologiperpus", "purikebahagiaan", "pustakawan", "rancanggame", "rdbms", "sbd", "sejarahbudaya",
+			"sinyalsistem", "sistemaliyah", "sistemorganisasi", "sistemsosial", "skripsi", "smartphone", "snort",
+			"social", "socketprogram", "sosiologi", "sosiologidasar", "sosiologiseni", "spss", "sqlart", "sqlserver",
+			"statistikpenelitian", "studiquran", "teorisosial", "transformasisosial", "tuhandimatafilsuf", "ubuntu",
+			"visualc", "visualuml", "warehouse"
+		];
+
+		function listbuku(buku, scenel) {
+			for (let i = 50; i <= buku.length; i++) {
+				for (let i = 0; i <= buku.length; i++) {
+					let marker = document.createElement("a-marker");
+					let uri = "";
+					uri += "./custom markers/pattern-" + markers[i] + ".patt";
+					marker.setAttribute("type", "pattern");
+					marker.setAttribute("url", uri);
+					let kertas = document.createElement("a-plane");
+					let warna = "";
+					if (buku[i].kategori == "filosofi") {
+						console.log(warna = "tomato");
+					} else if (buku[i].kategori == "politik") {
+						console.log(warna = "goldenrod");
+					} else if (buku[i].kategori == "statistik") {
+						console.log(warna = "skyblue");
+					} else if (buku[i].kategori == "psikologi") {
+						console.log(warna = "darkgrey");
+					} else if (buku[i].kategori == "sosial") {
+						console.log(warna = "springgreen");
+					} else if (buku[i].kategori == "it") {
+						console.log(warna = "royalblue");
+					} else if (buku[i].kategori == "pendidikan") {
+						console.log(warna = "mediumorchid");
+					} else if (buku[i].kategori == "ekonomi") {
+						console.log(warna = "limegreen");
+					} else if (buku[i].kategori == "agama") {
+						console.log(warna = "lightpink");
+					} else if (buku[i].kategori == "sejarah") {
+						console.log(warna = "tan");
+					} else {
+						console.log(warna = "white");
+					}
+					kertas.setAttribute("color", warna);
+					kertas.setAttribute("scale", "1.2 1.5");
+					kertas.setAttribute("rotation", "-90 0 0");
+					let cover = document.createElement("a-image");
+					let gambar = "";
+					gambar += "./img/" + markers[i] + "JPG.jpg"
+					cover.setAttribute("scale", "0.15 0.15");
+					cover.setAttribute("src", gambar);
+					cover.setAttribute("position", "0 0.42 0.05");
+					let judul = document.createElement("a-text");
+					let titel = "";
+					let edisi = ""; if(buku[i].edisi==""){
+						console.log(edisi="");
+					}else{
+						console.log(edisi="[Edisi "+buku[i].edisi+"]")
+					}
+					titel += buku[i].title+" "+edisi+" ("+buku[i].tahun+")";
+					judul.setAttribute("value", titel);
+					judul.setAttribute("scale", "0.2 0.2 0.2");
+					judul.setAttribute("position", "0 0.33 0.05");
+					judul.setAttribute("color", "black");
+					judul.setAttribute("baseline", "top");
+					judul.setAttribute("anchor", "center");
+					judul.setAttribute("align", "center");
+					let writer = document.createElement("a-text");
+					let penulis = "";
+					penulis += "Penulis 	: " + buku[i].writers;
+					writer.setAttribute("value", penulis);
+					writer.setAttribute("scale", "0.19 0.19 0.19");
+					writer.setAttribute("position", "0 0.19 0.05");
+					writer.setAttribute("color", "black");
+					writer.setAttribute("baseline", "top");
+					writer.setAttribute("anchor", "center");
+					writer.setAttribute("align", "left");
+					let tebal = document.createElement("a-text");
+					let hal = "";
+					hal += "Tebal		: " + buku[i].tebal + " halaman";
+					tebal.setAttribute("value", hal);
+					tebal.setAttribute("scale", "0.19 0.19 0.19");
+					tebal.setAttribute("position", "0 0.14 0.05");
+					tebal.setAttribute("color", "black");
+					tebal.setAttribute("baseline", "top");
+					tebal.setAttribute("anchor", "center");
+					tebal.setAttribute("align", "left");
+					let sin = document.createElement("a-text");
+					sin.setAttribute("value", "Summary :");
+					sin.setAttribute("scale", "0.19 0.19");
+					sin.setAttribute("position", "0 0.085 0.05");
+					sin.setAttribute("color", "black");
+					sin.setAttribute("baseline", "top");
+					sin.setAttribute("anchor", "center");
+					sin.setAttribute("align", "justify");
+					let sinop = document.createElement("a-text");
+					let sinopsis = "";
+					sinopsis +=  buku[i].sinopsis;
+					sinop.setAttribute("value", sinopsis);
+					sinop.setAttribute("scale", "0.19 0.19");
+					sinop.setAttribute("width", "4");
+					sinop.setAttribute("position", "0.115 0.083 0.05");
+					sinop.setAttribute("wrap-count", "45");
+					sinop.setAttribute("color", "black");
+					sinop.setAttribute("baseline", "top");
+					sinop.setAttribute("anchor", "center");
+					sinop.setAttribute("align", "justify");
+					let sedia = document.createElement("a-text");
+					let warni = "";if(buku[i].available=="0"){ 
+						console.log(warni = "red");
+					} else {console.log(warni = "blue");}
+					let sediaan = "";
+					sediaan += "Available	: " + buku[i].available + " copies"
+					sedia.setAttribute("value", sediaan);
+					sedia.setAttribute("scale", "0.19 0.19 0.19");
+					sedia.setAttribute("position", "0 -0.4 0.05");
+					sedia.setAttribute("color", warni);
+					sedia.setAttribute("baseline", "top");
+					sedia.setAttribute("anchor", "center");
+					sedia.setAttribute("align", "left");
+					let kode = document.createElement("a-text");
+					let koderak = "";
+					koderak += "No. Panggil : " + buku[i].kode;
+					kode.setAttribute("value", koderak);
+					kode.setAttribute("scale", "0.19 0.19 0.19");
+					kode.setAttribute("position", "0 -0.35 0.05");
+					kode.setAttribute("color", "black");
+					kode.setAttribute("baseline", "top");
+					kode.setAttribute("anchor", "center");
+					kode.setAttribute("align", "left");
+					marker.appendChild(kertas);
+					kertas.appendChild(judul);
+					kertas.appendChild(writer);
+					kertas.appendChild(sin);
+					kertas.appendChild(sinop);
+					kertas.appendChild(sedia);
+					kertas.appendChild(cover);
+					kertas.appendChild(kode);
+					kertas.appendChild(tebal);
+					scenel.appendChild(marker);
+				}
+			}
+		}
+	</script>
+</body>
+
+</html>
