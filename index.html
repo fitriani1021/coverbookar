@@ -149,7 +149,7 @@
 						console.log(warni = "red");
 					} else {console.log(warni = "blue");}
 					let sediaan = "";
-					sediaan += "Available	: " + buku[i].available + " copies"
+					sediaan += "Available	  : " + buku[i].available + " copies"
 					sedia.setAttribute("value", sediaan);
 					sedia.setAttribute("scale", "0.19 0.19 0.19");
 					sedia.setAttribute("position", "0 -0.4 0.05");
@@ -159,7 +159,7 @@
 					sedia.setAttribute("align", "left");
 					let kode = document.createElement("a-text");
 					let koderak = "";
-					koderak += "Kode Buku : " + buku[i].kode;
+					koderak += "No. Panggil : " + buku[i].kode;
 					kode.setAttribute("value", koderak);
 					kode.setAttribute("scale", "0.19 0.19 0.19");
 					kode.setAttribute("position", "0 -0.35 0.05");
