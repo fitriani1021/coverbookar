@@ -2,7 +2,7 @@
 <html>
 
 <head>
-	<title> Multi Markers AR - Playing the Archive - CASA UCL</title>
+	<title>Cover Book AR</title>
 	<meta name="description" content="Multi Markers AR - Playing the Archive - CASA UCL">
     <script src="../aframe/aframe.min.js"></script>
     <script src="../build/aframe-ar.js"></script>
@@ -13,6 +13,7 @@
 <body>
 	<a-scene markers_start vr-mode-ui="enabled: false" color-space="sRGB" renderer="gammaOutput: true" embedded
 		arjs='debugUIEnabled: false; sourceType: webcam; patternRatio: 0.85; trackingMethod: best;'>
+		<a-nft type='nft' url='./book/markers/berjalan' smooth='true' smoothCount='10' smoothTolerance=0.01' smoothThreshold='5'>
 		<a-plane color="cyan" rotation="-90 0 0" scale="1 1.5 1" position="0 0 0">
 			<a-entity scale="0.19 0.19 0.19" material="transparent: false">
 				<a-text value="Berjalan di Atas Gelombang" anchor="center" align="center" color="red" position="0 2 0.2"
@@ -25,6 +26,7 @@
 				</a-text>
 			</a-entity>
 		</a-plane>
+	</a-nft>
 		<a-entity id='userCamera' camera>
 			<a-cursor> </a-cursor>
 		</a-entity>
